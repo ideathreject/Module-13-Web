@@ -9,7 +9,7 @@ public class Task1 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
 
@@ -21,7 +21,7 @@ public class Task1 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url + "/" + userID))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .PUT(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
 
@@ -33,7 +33,7 @@ public class Task1 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url + "/" + userID))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .DELETE()
                 .build();
 
@@ -47,7 +47,7 @@ public class Task1 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .GET()
                 .build();
 
@@ -59,7 +59,7 @@ public class Task1 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url + "/" + userID))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .GET()
                 .build();
 
@@ -71,7 +71,7 @@ public class Task1 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url + "?username=" + name))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .GET()
                 .build();
 

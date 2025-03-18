@@ -18,6 +18,6 @@ public class Main {
         System.out.println(task2.writeLastCommentsInJson(4));
         System.out.println(task2.writeLastCommentsInJson(1));
         //Task 3
-        task3.openedTasks(3);
+        System.out.println(task3.openedTasks(3));
     }
 }

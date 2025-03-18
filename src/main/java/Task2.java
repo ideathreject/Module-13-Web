@@ -13,13 +13,12 @@ public class Task2 {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/users/" + userID +"/posts"))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .GET()
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(response.body());
+        JsonNode jsonNode = ObjectMapperUtils.OBJECT_MAPPER.readTree(response.body());
         int lastPostNumber = 0;
         for (JsonNode post : jsonNode) {
             int userId = post.get("id").asInt();
@@ -30,13 +29,13 @@ public class Task2 {
 
         HttpRequest requestComments = HttpRequest.newBuilder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/"+lastPostNumber+"/comments"))
-                .header("Content-Type", "application/json")
+                .header(HttpHeaderUtils.CONTENT_TYPE_NAME, HttpHeaderUtils.VALUE_JSON)
                 .GET()
                 .build();
 
         HttpResponse<String> responseComments = client.send(requestComments, HttpResponse.BodyHandlers.ofString());
         String fileName = "user-" + userID + "-post-" + lastPostNumber + "-comments.json";
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), jsonNode);
+        ObjectMapperUtils.OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), jsonNode);
         System.out.println("File created " + fileName);
         return responseComments.body();
     }
